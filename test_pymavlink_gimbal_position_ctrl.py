@@ -22,10 +22,10 @@ conn.mav.command_long_send(conn.target_system,
                 deg['pitch'],   # parameter 1: pitch
                  deg['roll'],   # parameter 2: roll
                   deg['yaw'],   # parameter 3: yaw
-                           0,   # parameter 4
-                           0,   # parameter 5
+                           0,   # parameter 4: (unused)
+                           0,   # parameter 5: (unused)
                            0,   # parameter 6: input mode (position or speed)
-                           2    # parameter 7
+                           2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                            )
 
 # msg = conn.recv_match(type='COMMAND_ACK', blocking=True)
@@ -43,10 +43,10 @@ conn.mav.command_long_send(conn.target_system,
                -deg['pitch'],   # parameter 1: pitch
                 -deg['roll'],   # parameter 2: roll
                  -deg['yaw'],   # parameter 3: yaw
-                           0,   # parameter 4
-                           0,   # parameter 5
+                           0,   # parameter 4: (unused)
+                           0,   # parameter 5: (unused)
                            0,   # parameter 6: input mode (position or speed)
-                           2    # parameter 7
+                           2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                            )
 
 # msg = conn.recv_match(type='COMMAND_ACK', blocking=True)
@@ -64,10 +64,10 @@ conn.mav.command_long_send(conn.target_system,
                            0,   # parameter 1: pitch
                            0,   # parameter 2: roll
                            0,   # parameter 3: yaw
-                           0,   # parameter 4
-                           0,   # parameter 5
+                           0,   # parameter 4: (unused)
+                           0,   # parameter 5: (unused)
                            0,   # parameter 6: input mode (position or speed)
-                           2    # parameter 7
+                           2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                            )
 
 # msg = conn.recv_match(type='COMMAND_ACK', blocking=True)
