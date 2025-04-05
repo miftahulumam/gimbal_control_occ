@@ -18,7 +18,7 @@ conn.mav.command_long_send(conn.target_system,
                            conn.target_component,
                            mavutil.mavlink.MAV_CMD_DO_MOUNT_CONTROL,
                            0,
-                           # the parameters
+                    ###    the parameters
                 deg['pitch'],   # parameter 1: pitch
                  deg['roll'],   # parameter 2: roll
                   deg['yaw'],   # parameter 3: yaw
