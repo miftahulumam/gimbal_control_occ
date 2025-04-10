@@ -18,8 +18,8 @@ prototxt_face = "./model/face_deploy.prototxt"
 weight_face = "./model/face_model.caffemodel"
 model_face = cv2.dnn.readNet(prototxt_face,weight_face)
 
-model_face.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-model_face.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+# model_face.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+# model_face.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 frame_width = 552
 frame_height = 552
@@ -161,7 +161,7 @@ def send_command_to_gimbal(yaw, pitch):
                             0,   # parameter 6: input mode (position or speed)
                             2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                             )
-    time.sleep(0.1)
+    time.sleep(0.5)
 
 def find_face(result):
     (startX_face, startY_face, endX_face, endY_face), center_coord = (0,0,0,0), (0,0)
