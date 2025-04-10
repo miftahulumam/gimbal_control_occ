@@ -76,7 +76,7 @@ def obj_detector(frame_queue, vis_queue, control_queue):
         
         """resize frame for object detection model"""
         # frame = cv2.resize(frame, (frame.shape[1]//2, frame.shape[0]//2))
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # print(f"Resized frame shape: {frame.shape}")
         
         # """extract the OFDM RoI manually"""

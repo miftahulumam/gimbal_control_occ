@@ -11,9 +11,9 @@ from visualization import image_show
 
 if __name__ == "__main__":
     """define the required queue"""
-    ori_frame_queue = Queue(maxsize=5000)
-    vis_frame_queue = Queue(maxsize=5000)
-    control_cmd_queue = Queue(maxsize=5000)
+    ori_frame_queue = Queue(maxsize=1000)
+    vis_frame_queue = Queue(maxsize=1000)
+    control_cmd_queue = Queue(maxsize=1000)
     show_feed = True
     
     """for multiprocessing"""
