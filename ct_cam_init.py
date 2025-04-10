@@ -45,8 +45,8 @@ def grab_image(ori_frame_queue):
         print("create StreamSource fail!")
         return -1
     
-    setExposureTime(camera, 1500)
-    setFrameRate(camera, 250.0)
+    # setExposureTime(camera, 1500)
+    # setFrameRate(camera, 250.0)
     
     # 通用属性设置:设置触发模式为off --根据属性类型，直接构造属性节点。如触发模式是 enumNode，构造enumNode节点
     # 自由拉流：TriggerMode 需为 off

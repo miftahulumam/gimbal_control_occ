@@ -158,10 +158,10 @@ def send_command_to_gimbal(yaw, pitch):
                           yaw,   # parameter 3: yaw
                             0,   # parameter 4: (unused)
                             0,   # parameter 5: (unused)
-                            0,   # parameter 6: input mode (position or speed)
+                            1,   # parameter 6: input mode (position or speed)
                             2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                             )
-    time.sleep(0.5)
+    time.sleep(0.03)
 
 def find_face(result):
     (startX_face, startY_face, endX_face, endY_face), center_coord = (0,0,0,0), (0,0)
@@ -237,12 +237,12 @@ def animate_output(i,
 
             
 if __name__ == '__main__':
-    kp_x = 0.05
-    ki_x = 0.3
+    kp_x = 0.0075
+    ki_x = 0.02
     kd_x = 0.0
 
-    kp_y = 0.03
-    ki_y = 0.1
+    kp_y = 0.0075
+    ki_y = 0.02
     kd_y = 0.0
     
     pid_x = PID(kp_x, ki_x, kd_x)

@@ -18,15 +18,12 @@ min_confidence = 0.8
 color_rect = (0, 255, 0)
 color_text = (0, 255, 0)
 
-W = None
-H = None
-
 """
 Execute AI model for object detection
 Find and extract the RoI of OOK and OFDM LED
 Put each detected RoI to each queue (OOK and OFDM)
 """
-def find_face(result):
+def find_face(result, H, W):
     (startX_face, startY_face, endX_face, endY_face), center_coord = (0,0,0,0), (0,0)
     for i in range(0,result.shape[2]):
         confidence = result[0,0,i,2]
@@ -78,6 +75,7 @@ def obj_detector(frame_queue, vis_queue, control_queue):
         # frame = cv2.resize(frame, (frame.shape[1]//2, frame.shape[0]//2))
         # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # print(f"Resized frame shape: {frame.shape}")
+        (H, W) = frame.shape[:2]
         
         # """extract the OFDM RoI manually"""
         # ofdm_frame = frame[365:475,390:502] #row,col, 
@@ -88,17 +86,19 @@ def obj_detector(frame_queue, vis_queue, control_queue):
         model_face.setInput(img_blob)
         result = model_face.forward()
 
-        (startX_face, startY_face, endX_face, endY_face), center_coord = find_face(result)
+        (startX_face, startY_face, endX_face, endY_face), center_coord = find_face(result, H, W)
         cv2.rectangle(frame, (startX_face, startY_face), (endX_face,endY_face), color_rect, 2)
         cv2.circle(frame, center_coord, 4, color_rect, 4)
         
         """put the object RoI and frame to its queue"""
         vis_queue.put(frame) #put the frame with RoI bbox for visualization
+        control_queue.put(center_coord)
         
         """For FPS calculation"""
         frame_counter += 1
         cur_time = time.time()
         if cur_time - fps_timer_start > 1:
             print(f"FPS det: {frame_counter / (cur_time - fps_timer_start)}")
+            print(center_coord)
             frame_counter = 0
             fps_timer_start = time.time()
