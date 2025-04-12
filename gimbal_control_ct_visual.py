@@ -16,16 +16,16 @@ def send_command_to_gimbal(conn, yaw, pitch):
                             1,   # parameter 6: input mode (position or speed)
                             2    # parameter 7: Mount Mode - MAV_MOUNT_MODE_MAVLINK_TARGETTING
                             )
-    # time.sleep(0.01)
+    time.sleep(0.01)
 
-def gimbal_control(connection, position_queue):
-    kp_x = 0.000075
-    ki_x = 0.00075
-    kd_x = 0.
+def gimbal_control(connection, position_queue, control_vis):
+    kp_x = 0.00035
+    ki_x = 0.002
+    kd_x = 0.0
 
-    kp_y = 0.000075
-    ki_y = 0.00075
-    kd_y = 0.
+    kp_y = 0.0001
+    ki_y = 0.001
+    kd_y = 0.0
     
     pid_x = PID(kp_x, ki_x, kd_x)
     pid_y = PID(kp_y, ki_y, kd_y)
@@ -54,6 +54,11 @@ def gimbal_control(connection, position_queue):
             gimbal_x_pos = gimbal_x_pos + pid_control_x
             gimbal_y_pos = gimbal_y_pos + pid_control_y
             send_command_to_gimbal(connection, gimbal_x_pos, gimbal_y_pos)
+
+        control_vis.put({'control_signal_x': pid_control_x, 'control_signal_y': pid_control_y,
+                         'feedback_x': position_x, 'feedback_y': position_y,
+                         'setpoint_x': setpoint_yaw, 'setpoint_y': setpoint_pitch,
+                         })
 
         
 

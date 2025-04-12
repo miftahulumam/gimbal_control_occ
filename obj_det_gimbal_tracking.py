@@ -89,6 +89,7 @@ def obj_detector(frame_queue, vis_queue, control_queue):
         (startX_face, startY_face, endX_face, endY_face), center_coord = find_face(result, H, W)
         cv2.rectangle(frame, (startX_face, startY_face), (endX_face,endY_face), color_rect, 2)
         cv2.circle(frame, center_coord, 4, color_rect, 4)
+        cv2.circle(frame, (W//2, H//2), 4, (255, 255, 0), 4)
         
         """put the object RoI and frame to its queue"""
         vis_queue.put(frame) #put the frame with RoI bbox for visualization

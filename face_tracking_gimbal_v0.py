@@ -345,3 +345,4 @@ if __name__ == '__main__':
     finally:
         pipeline.stop()
         cv2.destroyAllWindows()
+        plt.close('all')

@@ -4,7 +4,7 @@ class PID:
     """PID Controller
     """
 
-    def __init__(self, P=0.2, I=0.0, D=0.0, current_time=None):
+    def __init__(self, P=0.2, I=0.0, D=0.0, windup_guard = 20.0, current_time=None):
 
         self.Kp = P
         self.Ki = I
@@ -14,9 +14,9 @@ class PID:
         self.current_time = current_time if current_time is not None else time.time()
         self.last_time = self.current_time
 
-        self.clear()
+        self.clear(windup_guard)
 
-    def clear(self):
+    def clear(self, windup_guard):
         """Clears PID computations and coefficients"""
         self.SetPoint = 0.0
 
@@ -27,7 +27,7 @@ class PID:
 
         # Windup Guard
         self.int_error = 0.0
-        self.windup_guard = 20.0
+        self.windup_guard = windup_guard
 
         self.output = 0.0
 
